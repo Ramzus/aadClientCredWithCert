@@ -1,4 +1,4 @@
-# Azure AD Client Credentials with Certificate - Code Examples
+# Azure AD Client Credentials with Certificate - Code Examples for Node.js
 This is sample repository of code and helper function which I created for requesting Azure AD Tokens with the use of certificate credentials in Oauth2 Client Credentials Flow. 
 
 Previously I've been using the ADAL JS, but as it's being phased out I decided try my own implementation to understand the flow more comprehensively.
@@ -8,7 +8,7 @@ Previously I've been using the ADAL JS, but as it's being phased out I decided t
 
 
 **Contents**
-- [Azure AD Client Credentials with Certificate - Code Examples](#azure-ad-client-credentials-with-certificate---code-examples)
+- [Azure AD Client Credentials with Certificate - Code Examples for Node.js](#azure-ad-client-credentials-with-certificate---code-examples-for-nodejs)
   - [Depedencies and references](#depedencies-and-references)
     - [Reference documentation](#reference-documentation)
   - [Flow](#flow)
