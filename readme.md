@@ -114,7 +114,10 @@ var priv = require('fs').readFileSync('./private1.pem').toString()
 var appid = '784b0133-29b4-4d65-8168-f15477c4620b'
 var tenantId = '3d6e366f-9587-413b-ab6b-0a851b1b91ba'
 ```
- #### 2.2 Run createConfig.js
+ #### 2.2 Run createConfig.js 
+start by installing depedencies with
+`` NPM install `` 
+Then create configuration
 `` node .\createConfig.js `` 
 
 `` // expected result: config file created at \nodeconfig.json `` 
