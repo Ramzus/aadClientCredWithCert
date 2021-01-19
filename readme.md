@@ -102,7 +102,10 @@ var pub = require('fs').readFileSync('./public1.pem').toString()
 var priv = require('fs').readFileSync('./private1.pem').toString()
 ```
 #### Easy setup path
-**Currently working only on openssl version that can take cnf file via cli params **
+<span style="color:red">**Currently working only on openssl version that can take cnf file via cli params **</span>.
+
+
+
   - For this you need to have OPENSSL installed, and available directly as openssl from command line without any path specified 
  
   - you can use  ``choco install openssl`` for windows to setup openssl for it to be available directly from cmd as openssl.exe / openssl 
