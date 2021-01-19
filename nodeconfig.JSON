@@ -1,1 +1,1 @@
-﻿{"priv":".\\private1.pem","pub":".\\public1.pem","appid":"784b0133-29b4-4d65-8168-f15477c4620b","tenantId":"3d6e366f-9587-413b-ab6b-0a851b1b91ba","x5t":"-mqmpapab48x6OyzfntGZg53mXE=","url":"https://login.microsoftonline.com/3d6e366f-9587-413b-ab6b-0a851b1b91ba/oauth2/token"}
+{"priv":".\\private1.pem","pub":".\\public1.pem","appid":"784b0133-29b4-4d65-8168-f15477c4620b","tenantId":"3d6e366f-9587-413b-ab6b-0a851b1b91ba","x5t":"pcs2VNtPHgcWvyGrP6X2cJXr7qk=","url":"https://login.microsoftonline.com/3d6e366f-9587-413b-ab6b-0a851b1b91ba/oauth2/token"}
