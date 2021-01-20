@@ -58,7 +58,7 @@ function x5tf (key) {
  async function generateConfig (appid,tenantId) {
 
     var cmd = [
-        'openssl genrsa -out private1.pem 2048 -config ca.cnf',
+        'openssl genrsa -out private1.pem 2048',
         'openssl req -new -x509 -key private1.pem -out public1.pem -days 720 -config ca.cnf -subj "/C=FI/CN=AADCert"'
         ]
 
