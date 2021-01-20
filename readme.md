@@ -10,6 +10,8 @@ Previously I've been using the ADAL JS, but as it's being phased out I decided t
 **Contents**
 - [Azure AD Client Credentials with Certificate - Code Examples for Node.js](#azure-ad-client-credentials-with-certificate---code-examples-for-nodejs)
   - [Depedencies and references](#depedencies-and-references)
+    - [OS and runtime](#os-and-runtime)
+    - [Further depedencies](#further-depedencies)
     - [Reference documentation](#reference-documentation)
   - [Flow](#flow)
   - [How-to](#how-to)
@@ -23,15 +25,25 @@ Previously I've been using the ADAL JS, but as it's being phased out I decided t
     - [4. Run ClientCredentialsWithCert.js](#4-run-clientcredentialswithcertjs)
     - [5. End](#5-end)
 
+
+
 ## Depedencies and references
 |Depedencies| NPM Description | Use in project|
 |---|---|---|
 | [jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)   |*An implementation of JSON Web Tokens*   | Creation and sign-in of tokens  |
 | [uuid]() |*For the creation of RFC4122 UUIDs*| JTI claim in token|
 [axios](https://www.npmjs.com/package/axios) | *Promise based HTTP client for the browser and node.js*| Used to call Azure AD Token Endpoint
+### OS and runtime 
+This package has been tested in mainstream versions of Linux, MacOS and Windows 10, with Node versions starting from 12.
+| OS | result
+|---| ---|
+|Win| &#9745;
+|MacOS|&#9745;
+|Linux|&#9745;
 
+### Further depedencies
 * Helpful example at [redthunder.blog](https://redthunder.blog/2017/06/08/jwts-jwks-kids-x5ts-oh-my) for Node.JS was used
-   to generate X5T header in JWT tokens. The author is credited in the actual code, and in this readme 
+   to generate X5T header in JWT tokens. The author is credited in the actual code, and in this readme as well.
   ```javascript
    // code below from https://redthunder.blog/2017/06/08/jwts-jwks-kids-x5ts-oh-my/
     var sigOctets = shaSig.split(":");
@@ -101,12 +113,14 @@ Go to [Azure AD Portal App Registrations](https://aad.portal.azure.com/#blade/Mi
 var pub = require('fs').readFileSync('./public1.pem').toString()
 var priv = require('fs').readFileSync('./private1.pem').toString()
 ```
-#### Easy setup path
+#### Easy setup path 
 
-  - For this you need to have OPENSSL installed, and available directly as openssl from command line without any path specified 
+  - For this you need to have OPENSSL and installed, and available directly as openssl from command line without any path specified 
  
-  - you can use  ``choco install openssl`` for windows to setup openssl for it to be available directly from cmd as openssl.exe / openssl 
-    - In Linux openssl is often pre-installed.
+  - You can use  ``choco install openssl`` for windows to setup openssl for it to be available directly from cmd as openssl.exe / openssl 
+  - If you dont have chocho please visit the installation guide https://chocolatey.org/install
+  - In Linux openssl is often pre-installed
+
 
  #### 2.1 Setup createConfig.js
   - Populate values for appId and tenantId with values gotten from step [Create new Azure AD application ](#1-create-new-azure-ad-application)
@@ -116,8 +130,10 @@ var appid = '784b0133-29b4-4d65-8168-f15477c4620b'
 var tenantId = '3d6e366f-9587-413b-ab6b-0a851b1b91ba'
 ```
  #### 2.2 Run createConfig.js 
-start by installing depedencies with
+Navigate to the project root of ``.\aadcertcred>`` 
+and start by installing depedencies with
 `` NPM install `` 
+
 Then create configuration
 `` node .\createConfig.js `` 
 
