@@ -57,24 +57,6 @@ function x5tf (key) {
 
  async function generateConfig (appid,tenantId) {
 
-    var cmd = [
-        'openssl genrsa -out private1.pem 2048',
-        'openssl req -new -x509 -key private1.pem -out public1.pem -days 720 -config ca.cnf -subj "/C=FI/CN=AADCert"'
-        ]
-
-    try {
-        for (let index = 0; index < cmd.length; index++) {
-
-            await execPromise(cmd[index]).catch((error) => {
-               
-                return Promise.reject(error)
-            })
-        }
-
-    } catch (error) {
-        return Promise.reject(error)
-    }
-
     var x5t = await x5tf('public1.pem').catch((error) => {
         return Promise.reject(error)
     })

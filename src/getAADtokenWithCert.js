@@ -87,11 +87,7 @@ async function getAADtokenWithCert(config, token) {
                 client_id: appid,
                 client_assertion: token,
                 resource: appid
-            }),
-            proxy: {
-                host: '127.0.0.1',
-                port: 9000
-            }
+            })
         }
 
         //console.log(options)
