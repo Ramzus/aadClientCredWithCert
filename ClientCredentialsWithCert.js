@@ -1,19 +1,10 @@
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
-
-// GetSHA1 gets the thumbprint for public key to be used 
+// GetSHA1 gets the thumbprint for public key to be used
 const {getSHA1} = require('./helpers/configGenerator')
 
 const {getAADtokenWithCert, createToken} = require('./src/getAADtokenWithCert')
 
 var config = require('./nodeconfig.json')
 
-// Destructure config for reading Public and Private Key's
-var {
-    pub,
-    priv
-} = config
-
-//
 var pub = require('fs').readFileSync('./public1.pem').toString()
 var priv = require('fs').readFileSync('./private1.pem').toString()
 

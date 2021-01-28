@@ -19,7 +19,10 @@ function createToken(config, pub, priv, debug) {
             appid,
             tenantId,
             x5t,
+            passphrase
         } = config
+
+        var privatekey = passphrase ? {key: priv, passphrase: passphrase} : priv;
 
         var claims = {
             "aud": `https://sts.windows.net/${tenantId}/`,
@@ -30,7 +33,7 @@ function createToken(config, pub, priv, debug) {
         claims.jti = uuid.v4()
         claims.exp = Math.floor(Date.now() / 1000) + (60 * 60)
 
-        sign(claims, priv, {
+        sign(claims, privatekey, {
             algorithm: 'RS256',
             header: {
                 x5t,
@@ -57,11 +60,7 @@ function createToken(config, pub, priv, debug) {
             } else {
                 resolve(jwt)
             }
- 
-         
 
-         
-           
         })
 
     })
@@ -93,8 +92,8 @@ async function getAADtokenWithCert(config, token) {
         //console.log(options)
 
         instance(options).then(({
-            data
-        }) => {
+                                    data
+                                }) => {
             resolve(data)
         }).catch(({response}) => {
             console.log(response)
@@ -102,28 +101,10 @@ async function getAADtokenWithCert(config, token) {
         })
 
 
-
-
-
     })
 
 
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 module.exports = {

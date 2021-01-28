@@ -1,82 +1,80 @@
-
-
 const {exec} = require('child_process');
-const fs =require('fs')
+const fs = require('fs')
 
-function execPromise (command) {
+function execPromise(command) {
 
-    return new Promise ( (resolve,reject) => {
+    return new Promise((resolve, reject) => {
 
-        exec(command, (err,stdout) => {
+        exec(command, (err, stdout) => {
 
             if (err) {
                 return reject(err)
             }
 
-            resolve (stdout)
-    
+            resolve(stdout)
+
         })
 
     })
 
-   
+
 }
 
-function x5tf (key) {
+function x5tf(key) {
 
-    return new Promise ((resolve) => {
+    return new Promise((resolve) => {
 
         /* var sig */
-    exec(`openssl x509 -in ${key} -fingerprint -noout`, (error,stdout) => {
+        exec(`openssl x509 -in ${key} -fingerprint -noout`, (error, stdout) => {
 
-        if(error) {
-            return reject(error)
-        }
+            if (error) {
+                return reject(error)
+            }
 
-    var shaSig = stdout.replace('SHA1 Fingerprint=','')
-    //console.log(shaSig)
-    // code below from https://redthunder.blog/2017/06/08/jwts-jwks-kids-x5ts-oh-my/
-    var sigOctets = shaSig.split(":");
-    var sigBuffer = Buffer.alloc(sigOctets.length)
-    for(var i=0; i<sigOctets.length; i++){
-       sigBuffer.writeUInt8(parseInt(sigOctets[i], 16), i);
-    }
-    //Perform base64url-encoding as per RFC7515 Appendix C
-    // code 
-    var x5t = sigBuffer.toString('base64').replace(/\+/g, '-').replace(/\//g, '_');
-    return resolve(x5t)
+            var shaSig = stdout.replace('SHA1 Fingerprint=', '')
+            //console.log(shaSig)
+            // code below from https://redthunder.blog/2017/06/08/jwts-jwks-kids-x5ts-oh-my/
+            var sigOctets = shaSig.split(":");
+            var sigBuffer = Buffer.alloc(sigOctets.length)
+            for (var i = 0; i < sigOctets.length; i++) {
+                sigBuffer.writeUInt8(parseInt(sigOctets[i], 16), i);
+            }
+            //Perform base64url-encoding as per RFC7515 Appendix C
+            // code
+            var x5t = sigBuffer.toString('base64').replace(/\+/g, '-').replace(/\//g, '_');
+            return resolve(x5t)
 
-    
-    
-    })
+
+        })
 
     })
 
 }
 
 
- async function generateConfig (appid,tenantId) {
+async function generateConfig(appid, tenantId, passphrase) {
 
     var x5t = await x5tf('public1.pem').catch((error) => {
         return Promise.reject(error)
     })
 
     var config = {
-        "priv":  ".\\private1.pem",
-        "pub":  ".\\public1.pem",
+        "priv": ".\\private1.pem",
+        "pub": ".\\public1.pem",
         appid,
         tenantId,
         x5t,
-        "url":`https://login.microsoftonline.com/${tenantId}/oauth2/token`
+        "url": `https://login.microsoftonline.com/${tenantId}/oauth2/token`,
+        passphrase
     }
-    
+
     fs.writeFileSync('nodeConfig.json', JSON.stringify(config))
 
-    return('config file created at \\nodeconfig.json')
-   
- }
+    return ('config file created at \\nodeconfig.json')
+
+}
 
 
-module.exports={generateConfig}
+module.exports = {generateConfig}
 
 
