@@ -1,10 +1,16 @@
-const axios = require('axios')
+let axios = require('axios')
 const uuid = require('uuid')
 const {
     verify,
     sign,
 } = require('jsonwebtoken')
 const qs = require('querystring')
+
+const axiosLogger = require('axios-logger');
+
+let instance = axios.create();
+instance.interceptors.request.use(axiosLogger.requestLogger);
+instance.interceptors.response.use(axiosLogger.responseLogger);
 
 function createToken(config, pub, priv, debug) {
     return new Promise((resolve, reject) => {
@@ -81,16 +87,21 @@ async function getAADtokenWithCert(config, token) {
                 client_id: appid,
                 client_assertion: token,
                 resource: appid
-            })
+            }),
+            proxy: {
+                host: '127.0.0.1',
+                port: 9000
+            }
         }
 
         //console.log(options)
 
-        axios(options).then(({
+        instance(options).then(({
             data
         }) => {
             resolve(data)
         }).catch(({response}) => {
+            console.log(response)
             reject(response.data)
         })
 

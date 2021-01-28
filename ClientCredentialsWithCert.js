@@ -1,3 +1,4 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 // GetSHA1 gets the thumbprint for public key to be used 
 const {getSHA1} = require('./helpers/configGenerator')

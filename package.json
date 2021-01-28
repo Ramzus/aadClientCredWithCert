@@ -11,6 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
+    "axios-debug-log": "^0.8.2",
+    "axios-logger": "^2.5.0",
     "chalk": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "uuid": "^8.3.2"

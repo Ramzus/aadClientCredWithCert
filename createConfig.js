@@ -2,8 +2,8 @@
 
 const {generateConfig} =require('./helpers/configGenerator')
 
-var appid = '784b0133-29b4-4d65-8168-f15477c4620b'
-var tenantId = '3d6e366f-9587-413b-ab6b-0a851b1b91ba'
+var appid = '2814bb41-4ef8-45cb-bb3e-9748753875e3'
+var tenantId = 'a3c8d0af-358c-4fed-b0bf-73679c851aa0'
 
 
 //Generate Configuration
